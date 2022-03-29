@@ -16,9 +16,15 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    user_name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    photo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+      default: './assets/images/default_profile.png',
     },
     email: {
       type: DataTypes.STRING,
@@ -33,6 +39,14 @@ User.init(
       allowNull: false,
       validate: {
         len: [8],
+      },
+    },
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'role',
+        key: 'id',
       },
     },
   },
