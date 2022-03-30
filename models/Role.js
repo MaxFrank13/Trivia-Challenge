@@ -14,7 +14,6 @@ Role.init(
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'player'
     },
   },
   {

@@ -16,8 +16,8 @@ Game.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Quiz,
-        key: id
+        model: 'quiz',
+        key: 'id'
       }
     },
     questions_answered: {

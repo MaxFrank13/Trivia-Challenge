@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Quiz extends Model {}
+class Quiz extends Model { }
 // the daily quiz
 
 Quiz.init(
@@ -26,11 +26,27 @@ Quiz.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: categories,
-        key: id,
+        model: 'categories',
+        key: 'id',
       }
-      },
     },
+    type_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'types',
+        key: 'id',
+      }
+    },
+    difficulty_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'difficulties',
+        key: 'id',
+      }
+    },
+  },
   {
     sequelize,
     timestamps: false,

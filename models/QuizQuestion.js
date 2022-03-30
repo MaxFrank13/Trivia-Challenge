@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class QuizQuestion extends Model {}
-// a user's individal game
+// a question for a quiz
 
 QuizQuestion.init(
   {
@@ -16,8 +16,8 @@ QuizQuestion.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Quiz,
-        key: id
+        model: 'quiz',
+        key: 'id'
       }
     },
     question_text: {
