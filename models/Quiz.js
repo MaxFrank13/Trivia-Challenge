@@ -24,7 +24,7 @@ Quiz.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'categories',
         key: 'id',
@@ -32,7 +32,7 @@ Quiz.init(
     },
     type_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'types',
         key: 'id',
@@ -40,7 +40,7 @@ Quiz.init(
     },
     difficulty_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'difficulties',
         key: 'id',
