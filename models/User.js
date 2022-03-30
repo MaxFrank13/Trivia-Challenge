@@ -44,6 +44,7 @@ User.init(
     role_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1,
       references: {
         model: 'role',
         key: 'id',

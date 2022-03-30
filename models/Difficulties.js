@@ -1,19 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Role extends Model {}
+class Difficulties extends Model {}
+// lookup of quiz difficulties from api
 
-Role.init(
+Difficulties.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      defaultValue: 1
+      autoIncrement: true,
     },
-    role: {
+    difficulty_name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     },
   },
   {
@@ -21,8 +27,8 @@ Role.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'role',
+    modelName: 'difficulties',
   }
 );
 
-module.exports = Role;
+module.exports = Difficulties;
