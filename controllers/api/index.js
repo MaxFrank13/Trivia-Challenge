@@ -2,7 +2,7 @@ const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const quizRoutes = require('./quizRoutes');
 const highscoreRoutes = require('./highscoreRoutes');
-const threadRoutes = require('./gameRoutes');
+const gameRoutes = require('./gameRoutes');
 
 router.use('/users', userRoutes);
 router.use('/quiz', quizRoutes);
