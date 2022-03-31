@@ -24,7 +24,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
-      default: './assets/images/default_profile.png',
+      defaultValue: './assets/images/default_profile.png',
     },
     email: {
       type: DataTypes.STRING,

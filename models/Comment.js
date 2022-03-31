@@ -15,11 +15,11 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    game_id: {
+    quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'game',
+        model: 'quiz',
         key: 'id',
         unique: false,
       }

@@ -1,17 +1,13 @@
 [
   {
-    "name": "Sal",
-    "email": "sal@hotmail.com",
-    "password": "password12345"
+    "user_name": "Don M",
+    "email": "dpmurphy_onsite@hotmail.com@hotmail.com",
+    "password": "password12345",
+    "role_id": 2
   },
   {
-    "name": "Lernantino",
-    "email": "lernantino@gmail.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Amiko",
-    "email": "amiko2k20@aol.com",
+    "user_name": "Test User",
+    "email": "test@user.com",
     "password": "password12345"
   }
 ]

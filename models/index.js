@@ -8,6 +8,7 @@ const Types = require('./Types');
 const Difficulties = require('./Difficulties');
 const QuizQuestion = require('./QuizQuestion');
 const QuizAnswers = require('./QuizAnswers');
+const GameDetail = require('./GameDetail');
 
 Role.hasOne(User, {
   foreignKey: 'role_id',
@@ -44,13 +45,13 @@ Game.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-Game.hasMany(Comment, {
-  foreignKey: 'game_id',
+Quiz.hasMany(Comment, {
+  foreignKey: 'quiz_id',
   onDelete: 'SET NULL'
 });
 
-Comment.belongsTo(Game, {
-  foreignKey: 'game_id'
+Comment.belongsTo(Quiz, {
+  foreignKey: 'quiz_id'
 });
 
 // Quiz.hasOne(Categories, {
@@ -98,4 +99,30 @@ QuizAnswers.belongsTo(QuizQuestion, {
   foreignKey: 'question_id'
 });
 
-module.exports = { User, Role, Game, Comment, Categories, Types, Difficulties, Quiz, QuizQuestion, QuizAnswers };
+Game.hasMany(GameDetail, {
+  foreignKey: 'game_id'
+});
+
+GameDetail.belongsTo(Game, {
+  foreignKey: 'game_id'
+});
+
+// GameDetail.hasMany(QuizQuestion, {
+//   foreignKey: 'question_id',
+//   onDelete: 'CASCADE',
+// });
+
+// QuizQuestion.belongsTo(GameDetail, {
+//   foreignKey: 'question_id'
+// });
+
+// GameDetail.hasMany(QuizAnswers, {
+//   foreignKey: 'answer_id',
+//   onDelete: 'CASCADE',
+// });
+
+// QuizAnswers.belongsTo(GameDetail, {
+//   foreignKey: 'answer_id'
+// });
+
+module.exports = { User, Role, Game, Comment, Categories, Types, Difficulties, Quiz, QuizQuestion, QuizAnswers, GameDetail };

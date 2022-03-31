@@ -1,10 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Quiz = require('./Quiz');
+const QuizAnswers = require('./QuizAnswers');
 
-class Quiz extends Model { }
-// the daily quiz
+class GameDetail extends Model {}
+// a user's individal game
 
-Quiz.init(
+GameDetail.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,49 +14,39 @@ Quiz.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    date_created: {
-      type: DataTypes.DATE,
+    game_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      references: {
+        model: 'game',
+        key: 'id'
+      }
     },
-    quiz_name: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: false,
-      defaultValue: DataTypes.NOW,
-    },
-    category_id: {
+    quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'categories',
-        key: 'id',
+        model: Quiz,
+        key: 'id'
       }
     },
-    type_id: {
+    answer_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'types',
-        key: 'id',
+        model: QuizAnswers,
+        key: 'id'
       }
     },
-    difficulty_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'difficulties',
-        key: 'id',
-      }
-    },
+  
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'quiz',
+    modelName: 'game',
   }
 );
 
-module.exports = Quiz;
+module.exports = GameDetail;
