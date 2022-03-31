@@ -16,6 +16,10 @@ Difficulties.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    display_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

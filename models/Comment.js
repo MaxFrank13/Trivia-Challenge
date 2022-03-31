@@ -22,6 +22,7 @@ Comment.init(
         model: 'quiz',
         key: 'id',
         unique: false,
+        onDelete: 'CASCADE'
       }
     },
     user_id: {
@@ -31,6 +32,7 @@ Comment.init(
         model: 'user',
         key: 'id',
         unique: false,
+        onDelete: 'CASCADE'
       },
     },
   },

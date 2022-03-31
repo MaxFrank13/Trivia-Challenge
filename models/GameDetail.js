@@ -2,6 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Quiz = require('./Quiz');
 const QuizAnswers = require('./QuizAnswers');
+const QuizQuestion = require('./QuizQuestion');
 
 class GameDetail extends Model {}
 // a user's individal game
@@ -19,15 +20,27 @@ GameDetail.init(
       allowNull: false,
       references: {
         model: 'game',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE',
       }
     },
     quiz_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: Quiz,
-        key: 'id'
+        key: 'id',
+        onDelete: 'SET NULL',
+      }
+    },
+    question_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: QuizQuestion,
+        key: 'id',
+        onDelete: 'SET NULL',
+
       }
     },
     answer_id: {
@@ -35,17 +48,17 @@ GameDetail.init(
       allowNull: true,
       references: {
         model: QuizAnswers,
-        key: 'id'
+        key: 'id',
+        onDelete: 'SET NULL',
       }
     },
-  
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'game',
+    modelName: 'gamedetail',
   }
 );
 

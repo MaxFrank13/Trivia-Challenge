@@ -17,7 +17,8 @@ QuizAnswers.init(
       allowNull: false,
       references: {
         model: 'quiz_question',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE',
       }
     },
     quiz_answer: {

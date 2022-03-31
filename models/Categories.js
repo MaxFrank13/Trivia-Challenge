@@ -16,6 +16,10 @@ Categories.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    api_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

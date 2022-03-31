@@ -29,6 +29,7 @@ Quiz.init(
       references: {
         model: 'categories',
         key: 'id',
+        onDelete: 'SET NULL',
       }
     },
     type_id: {
@@ -37,6 +38,7 @@ Quiz.init(
       references: {
         model: 'types',
         key: 'id',
+        onDelete: 'SET NULL',
       }
     },
     difficulty_id: {
@@ -45,6 +47,7 @@ Quiz.init(
       references: {
         model: 'difficulties',
         key: 'id',
+        onDelete: 'SET NULL',
       }
     },
   },
