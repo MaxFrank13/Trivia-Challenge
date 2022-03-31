@@ -2,7 +2,8 @@
   {
     "user_name": "Don M",
     "email": "dpmurphy_onsite@hotmail.com@hotmail.com",
-    "password": "password12345"
+    "password": "password12345",
+    "role_id": 2
   },
   {
     "user_name": "Test User",
