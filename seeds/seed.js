@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Role, Game, Comment, Categories, Types, Difficulties, Quiz, QuizQuestion, QuizAnswers } = require('../models');
+const { User, Role, Types, Difficulties } = require('../models');
 
 const userData = require('./userData.json');
 const seedCategories = require('./categoryData');
@@ -24,13 +24,13 @@ const seedDatabase = async () => {
   });
   console.log('\n----- USER SYNCED -----\n');
 
-  await Types.create({ type_name: 'easy' });
-  await Types.create({ type_name: 'medium' });
-  await Types.create({ type_name: 'hard' });
+  await Types.create({ type_name: 'easy', display_name: 'Easy' });
+  await Types.create({ type_name: 'medium', display_name: 'Medium' });
+  await Types.create({ type_name: 'hard', display_name: 'Hard' });
   console.log('\n----- TYPES SYNCED -----\n');
 
-  await Difficulties.create({ difficulty_name: 'multiple' });
-  await Difficulties.create({ difficulty_name: 'boolean' });
+  await Difficulties.create({ difficulty_name: 'multiple', display_name: 'Multiple Choice' });
+  await Difficulties.create({ difficulty_name: 'boolean', display_name: 'True / False' });
   console.log('\n----- DIFFICULTIES SYNCED -----\n');
 
   await seedCategories();
@@ -47,6 +47,12 @@ const seedDatabase = async () => {
 
   await seedComments();
   console.log('\n----- COMMENTS SEEDED -----\n');
+
+  await seedGame();
+  console.log('\n----- GAMES SEEDED -----\n');
+
+  await seedGameDetail();
+  console.log('\n----- GAME DETAIL SEEDED -----\n');
 
   process.exit(0);
 };

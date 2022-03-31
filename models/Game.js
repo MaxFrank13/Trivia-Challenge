@@ -17,7 +17,8 @@ Game.init(
       allowNull: true,
       references: {
         model: 'quiz',
-        key: 'id'
+        key: 'id',
+        OnDelete: 'CASCADE'
       }
     },
     questions_answered: {
@@ -50,6 +51,7 @@ Game.init(
       references: {
         model: 'user',
         key: 'id',
+        OnDelete: 'CASCADE'
       },
     },
   },

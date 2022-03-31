@@ -1,80 +1,69 @@
-const { Categories } = require('../models');
+const { GameDetail } = require('../models');
 
 const seedData = [
   {
-    "category_name": "General Knowledge"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 1,
+    "answer_id": 1,
   },
   {
-    "category_name": "Entertainment: Books"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 2,
+    "answer_id": 2,
   },
   {
-    "category_name": "Entertainment: Film"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 3,
+    "answer_id": 4,
   },
   {
-    "category_name": "Entertainment: Music"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 4,
+    "answer_id": 3,
   },
   {
-    "category_name": "Entertainment: Musicals & Theatres"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 5,
+    "answer_id": 1,
   },
   {
-    "category_name": "Entertainment: Television"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 6,
+    "answer_id": 2,
   },
   {
-    "category_name": "Entertainment: Video Games"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 7,
+    "answer_id": 1,
   },
   {
-    "category_name": "Entertainment: Board Games"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 8,
+    "answer_id": 1,
   },
   {
-    "category_name": "Science & Nature"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 9,
+    "answer_id": 4,
   },
   {
-    "category_name": "Science: Computers"
+    "game_id": 1,
+    "quiz_id": 1,
+    "question_id": 10,
+    "answer_id": 1,
   },
-  {
-    "category_name": "Science: Mathematics"
-  },
-  {
-    "category_name": "Mythology"
-  },
-  {
-    "category_name": "Sports"
-  },
-  {
-    "category_name": "Geography"
-  },
-  {
-    "category_name": "History"
-  },
-  {
-    "category_name": "Politics"
-  },
-  {
-    "category_name": "Art"
-  },
-  {
-    "category_name": "Celebrities"
-  },
-  {
-    "category_name": "Animals"
-  },
-  {
-    "category_name": "Vehicles"
-  },
-  {
-    "category_name": "Entertainment: Comics"
-  },
-  {
-    "category_name": "Science: Gadgets"
-  },
-  {
-    "category_name": "Entertainment: Japanese Anime & Manga"
-  },
-  {
-    "category_name": "Entertainment: Cartoon & Animations"
-  }
+
 ];
 
-const seedGameDetail = () => Categories.bulkCreate(seedData);
+const seedGameDetail = () => GameDetail.bulkCreate(seedData);
 
 module.exports = seedGameDetail;
