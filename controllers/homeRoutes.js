@@ -11,8 +11,6 @@ router.get('/', async (req, res) => {
     });
   
     const scores = scoreData.map(score => score.get({ plain: true }));
-  
-    // res.status(200).json(scores);
 
     res.render('homepage', {
       logged_in: true,
@@ -53,5 +51,15 @@ router.get('/profile', withAuth, async (req, res) => {
 
   };
 });
+
+// path to a login page if the user is not already logged in
+router.get('/login', (req, res) => {
+	if (req.session.logged_in) {
+		res.redirect('/profile');
+		return;
+	}
+
+	res.render('login');
+})
 
 module.exports = router;
