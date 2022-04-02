@@ -9,75 +9,136 @@ const Difficulties = require('./Difficulties');
 const QuizQuestion = require('./QuizQuestion');
 const QuizAnswers = require('./QuizAnswers');
 const GameDetail = require('./GameDetail');
+const { hasOne } = require('./Comment');
 
-// User.hasMany(Game, {
-//   foreignKey: 'user_id',
-//   onDelete: 'SET NULL'
-// });
+Role.hasOne(User, {
+    foreignKey: 'role_id',
+});
 
-// Quiz.hasMany(Comment, {
-//   foreignKey: 'quiz_id',
-//   onDelete: 'SET NULL'
-// });
+User.belongsTo(Role, {
+    foreignKey: 'role_id',
+    key: 'id',
+});
 
-// Quiz.hasOne(Categories, {
-//   foreignKey: 'category_id',
-//   onDelete: 'SET NULL',
-// });
+User.hasMany(Comment, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+  });
 
-// Categories.belongsTo(Quiz, {
-//   foreignKey: 'category_id'
-// });
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+    key: 'id',
+});
 
-// Quiz.hasOne(Types, {
-//   foreignKey: 'type_id',
-//   onDelete: 'SET NULL',
-// });
+Quiz.hasMany(Comment, {
+  foreignKey: 'quiz_id',
+  onDelete: 'CASCADE'
+});
 
-// Types.belongsTo(Quiz, {
-//   foreignKey: 'type_id'
-// });
+Comment.belongsTo(Quiz, {
+    foreignKey: 'quiz_id',
+    key: 'id',
+});
 
-// Quiz.hasOne(Difficulties, {
-//   foreignKey: 'difficulty_id',
-//   onDelete: 'SET NULL',
-// });
+Categories.hasMany(Quiz, {
+  foreignKey: 'category_id',
+  onDelete: 'SET NULL',
+});
 
-// Difficulties.belongsTo(Quiz, {
-//   foreignKey: 'difficulty_id'
-// });
+Quiz.belongsTo(Categories, {
+    foreignKey: 'category_id',
+    key: 'id',
+});
 
-// Quiz.hasMany(QuizQuestion, {
-//   foreignKey: 'quiz_id',
-//   onDelete: 'CASCADE',
-// });
+Types.hasMany(Quiz, {
+  foreignKey: 'type_id',
+  onDelete: 'SET NULL',
+});
 
-// QuizQuestion.belongsTo(Quiz, {
-//   foreignKey: 'quiz_id'
-// });
+Quiz.belongsTo(Types, {
+  foreignKey: 'type_id',
+  key: 'id',
+});
 
-// QuizQuestion.hasMany(QuizAnswers, {
-//   foreignKey: 'question_id',
-//   onDelete: 'CASCADE',
-// });
+Difficulties.hasMany(Quiz, {
+  foreignKey: 'difficulty_id',
+  onDelete: 'SET NULL',
+});
 
-// QuizAnswers.belongsTo(QuizQuestion, {
-//   foreignKey: 'question_id'
-// });
+Quiz.belongsTo(Difficulties, {
+  foreignKey: 'difficulty_id',
+  key: 'id',
+});
 
-// Quiz.hasMany(Game, {
-//   foreignKey: 'quiz_id',
-//   onDelete: 'SET NULL'
-// });
+Quiz.hasMany(QuizQuestion, {
+  foreignKey: 'quiz_id',
+  onDelete: 'CASCADE',
+});
 
-// Game.belongsTo(Quiz, {
-//   foreignKey: 'quiz_id',
-// });
+QuizQuestion.belongsTo(Quiz, {
+  foreignKey: 'quiz_id',
+  key: 'id',
+});
 
-// Game.hasMany(GameDetail, {
-//   foreignKey: 'game_id',
-//   onDelete: 'CASCADE',
-// });
+QuizQuestion.hasMany(QuizAnswers, {
+  foreignKey: 'question_id',
+  onDelete: 'CASCADE',
+});
+
+QuizAnswers.belongsTo(QuizQuestion, {
+  foreignKey: 'question_id',
+  key: 'id',
+});
+
+User.hasMany(Game, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+  });
+  
+  Game.belongsTo(User, {
+      foreignKey: 'user_id',
+      key: 'id',
+  });
+
+Quiz.hasMany(Game, {
+  foreignKey: 'quiz_id',
+  onDelete: 'SET NULL',
+});
+
+Game.belongsTo(Quiz, {
+  foreignKey: 'quiz_id',
+  key: 'id',
+});
+
+Game.hasMany(GameDetail, {
+  foreignKey: 'game_id',
+  onDelete: 'CASCADE',
+});
+
+GameDetail.belongsTo(Game, {
+    foreignKey: 'game_id',
+    key: 'id',
+});
+
+QuizQuestion.hasMany(GameDetail, {
+    foreignKey: 'question_id',
+    onDelete: 'SET NULL',
+});
+
+GameDetail.belongsTo(QuizQuestion, {
+    foreignKey: 'question_id',
+    key: 'id',
+});
+
+QuizAnswers.hasMany(GameDetail, {
+    foreignKey: 'answer_id',
+    onDelete: 'SET NULL'
+});
+
+GameDetail.belongsTo(QuizAnswers, {
+    foreignKey: 'answer_id',
+    key: 'id',
+}),
 
 // GameDetail.belongsToMany(QuizQuestion, {
 //   through: Quiz,

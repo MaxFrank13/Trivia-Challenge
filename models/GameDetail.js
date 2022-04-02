@@ -18,39 +18,38 @@ GameDetail.init(
     game_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'game',
-        key: 'id',
-        onDelete: 'CASCADE',
-      }
+      // references: {
+      //   model: 'game',
+      //   key: 'id',
+      //   onDelete: 'CASCADE',
+      // }
     },
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: Quiz,
-        key: 'id',
-        onDelete: 'SET NULL',
-      }
+      // references: {
+      //   model: Quiz,
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
     question_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: QuizQuestion,
-        key: 'id',
-        onDelete: 'SET NULL',
-
-      }
+      // references: {
+      //   model: QuizQuestion,
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
     answer_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: QuizAnswers,
-        key: 'id',
-        onDelete: 'SET NULL',
-      }
+      // references: {
+      //   model: QuizAnswers,
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
   },
   {

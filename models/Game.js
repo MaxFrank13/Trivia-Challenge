@@ -15,11 +15,11 @@ Game.init(
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'quiz',
-        key: 'id',
-        OnDelete: 'CASCADE'
-      }
+      // references: {
+      //   model: 'quiz',
+      //   key: 'id',
+      //   OnDelete: 'CASCADE'
+      // }
     },
     questions_answered: {
       type: DataTypes.INTEGER,
@@ -48,11 +48,11 @@ Game.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-        OnDelete: 'CASCADE'
-      },
+      // references: {
+      //   model: 'user',
+      //   key: 'id',
+      //   OnDelete: 'CASCADE'
+      // },
     },
   },
   {

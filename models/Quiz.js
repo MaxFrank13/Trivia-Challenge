@@ -26,29 +26,29 @@ Quiz.init(
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'categories',
-        key: 'id',
-        onDelete: 'SET NULL',
-      }
+      // references: {
+      //   model: 'categories',
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
     type_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'types',
-        key: 'id',
-        onDelete: 'SET NULL',
-      }
+      // references: {
+      //   model: 'types',
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
     difficulty_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'difficulties',
-        key: 'id',
-        onDelete: 'SET NULL',
-      }
+      // references: {
+      //   model: 'difficulties',
+      //   key: 'id',
+      //   onDelete: 'SET NULL',
+      // }
     },
   },
   {
