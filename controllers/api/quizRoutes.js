@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Quiz, QuizQuestion, QuizAnswers, Categories, User, Difficulties } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// GET the General Knowledge quiz of the day from our database
+// GET the quiz of the day for a given category and difficulty from our database
 router.get('/:category_id/:difficulty_id', withAuth, async (req,res) => {
   try {
     const quizData = await Quiz.findOne({
@@ -12,12 +12,6 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req,res) => {
         },
         {
           model: QuizAnswers
-        },
-        {
-          model: Categories,
-        },
-        {
-          model: Difficulties,
         },
       ],
       where: {
@@ -41,7 +35,7 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req,res) => {
 
 // GET data for a quiz by its id
 
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const quizData = await Quiz.findByPk(req.params.id, {
       include: [
@@ -53,9 +47,6 @@ router.get('/:id', withAuth, async (req, res) => {
               attributes: ['user_name']
             }
           ],
-          where: {
-            quiz_id: req.params.id
-          },
         }
     ],
     });
