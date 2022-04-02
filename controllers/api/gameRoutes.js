@@ -44,4 +44,16 @@ router.get('/all', withAuth, async (req, res) => {
 
 // POST a user's game result
 
-// GET all scores for a 
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newGame = await Game.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json(newGame);
+  } catch(err) {
+    res.status(500).json(err);
+  };
+});
+
+module.exports = router;
