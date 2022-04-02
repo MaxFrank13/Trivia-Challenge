@@ -8,15 +8,18 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req,res) => {
     const quizData = await Quiz.findOne({
       include: [
         {
-          model: QuizQuestion
-        },
-        {
-          model: QuizAnswers
+          model: QuizQuestion,
+          include: [
+            {
+              model: QuizAnswers
+            },
+          ],
         },
       ],
       where: {
         category_id: req.params.category_id,
         difficulty_id: req.params.difficulty_id,
+        // type_id: req.params.type_id
       },
       order: [['date_created', 'DESC']],
     });

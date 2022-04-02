@@ -2,6 +2,9 @@ const router = require('express').Router();
 const { Quiz, QuizQuestion, QuizAnswers, Categories, User, Difficulties, Game } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// GET the wrong answers for a game
+
+
 // GET games from previous days
 router.get('/all', withAuth, async (req, res) => {
   try {
@@ -11,10 +14,12 @@ router.get('/all', withAuth, async (req, res) => {
           model: Quiz,
           include: [
             {
-              model: QuizQuestion
-            },
-            {
-              model: QuizAnswers
+              model: QuizQuestion,
+              include: [
+                {
+                  model: QuizAnswers
+                },
+              ],
             },
             {
               model: Categories,
@@ -26,15 +31,17 @@ router.get('/all', withAuth, async (req, res) => {
         },
       ],
       where: {
-        user_id: req.session.user_id
+        user_id: 1,
       },
     });
 
     const games = gameData.map(game => game.get({ plain: true }));
 
+    res.status(200).json(games);
+
     res.render('leaderboard', {
       games,
-      logged_in: req.session.logged_in,
+      logged_in: 1,
     });
 
   } catch(err) {
@@ -42,8 +49,10 @@ router.get('/all', withAuth, async (req, res) => {
   };
 });
 
-// POST a user's game result
+// POST for each answer; get ids from user input
 
+
+// POST a user's game result
 router.post('/', withAuth, async (req, res) => {
   try {
     const newGame = await Game.create({
