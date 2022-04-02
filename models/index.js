@@ -9,7 +9,6 @@ const Difficulties = require('./Difficulties');
 const QuizQuestion = require('./QuizQuestion');
 const QuizAnswers = require('./QuizAnswers');
 const GameDetail = require('./GameDetail');
-const { hasOne } = require('./Comment');
 
 Role.hasOne(User, {
     foreignKey: 'role_id',
