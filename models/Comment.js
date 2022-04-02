@@ -18,22 +18,22 @@ Comment.init(
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'quiz',
-        key: 'id',
-        unique: false,
-        onDelete: 'CASCADE'
-      }
+      // references: {
+      //   model: 'quiz',
+      //   key: 'id',
+      //   unique: false,
+      //   onDelete: 'CASCADE'
+      // }
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: 'user',
-        key: 'id',
-        unique: false,
-        onDelete: 'CASCADE'
-      },
+      // references: {
+      //   model: 'user',
+      //   key: 'id',
+      //   unique: false,
+      //   onDelete: 'CASCADE'
+      // },
     },
   },
   {

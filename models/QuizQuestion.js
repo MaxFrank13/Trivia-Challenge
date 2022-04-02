@@ -15,11 +15,11 @@ QuizQuestion.init(
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'quiz',
-        key: 'id',
-        onDelete: 'CASCADE',
-      }
+      // references: {
+      //   model: 'quiz',
+      //   key: 'id',
+      //   onDelete: 'CASCADE',
+      // }
     },
     question_text: {
       type: DataTypes.TEXT,

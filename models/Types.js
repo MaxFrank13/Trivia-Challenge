@@ -19,7 +19,8 @@ Types.init(
     display_name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },    active: {
+    },
+    active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
