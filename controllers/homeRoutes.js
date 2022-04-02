@@ -12,9 +12,11 @@ router.get('/', async (req, res) => {
   
     const scores = scoreData.map(score => score.get({ plain: true }));
   
-    res.status(200).json(scores);
+    // res.status(200).json(scores);
 
-    res.render('homepage');
+    res.render('homepage', {
+      logged_in: true,
+    });
 
   } catch(err) {
     res.status(500).json(err);
