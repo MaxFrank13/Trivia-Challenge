@@ -24,13 +24,13 @@ const seedDatabase = async () => {
   });
   console.log('\n----- USER SYNCED -----\n');
 
-  await Difficulties.create({ type_name: 'easy', display_name: 'Easy' });
-  await Difficulties.create({ type_name: 'medium', display_name: 'Medium' });
-  await Difficulties.create({ type_name: 'hard', display_name: 'Hard' });
+  await Difficulties.create({ difficulty_name: 'easy', display_name: 'Easy' });
+  await Difficulties.create({ difficulty_name: 'medium', display_name: 'Medium' });
+  await Difficulties.create({ difficulty_name: 'hard', display_name: 'Hard' });
   console.log('\n----- DIFFICULTIES SYNCED -----\n');
 
-  await Types.create({ difficulty_name: 'multiple', display_name: 'Multiple Choice' });
-  await Types.create({ difficulty_name: 'boolean', display_name: 'True / False' });
+  await Types.create({ type_name: 'multiple', display_name: 'Multiple Choice' });
+  await Types.create({ type_name: 'boolean', display_name: 'True / False' });
   console.log('\n----- TYPES SYNCED -----\n');
   
   await seedCategories();
