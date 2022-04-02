@@ -3,13 +3,13 @@ const { Quiz, GameDetail, Game, Categories, User, Difficulties } = require('../.
 const withAuth = require('../../utils/auth');
 
 // GET all scores for a user
-
 router.get('/', async (req, res) => {
   try {
     const scoreData = await Game.findAll({
       attributes: ['game_score'],
       where: {
-        user_id: req.session.user_id,
+        user_id: 1,
+        // user_id: req.session.user_id,
       }
     });
 
@@ -26,13 +26,13 @@ router.get('/', async (req, res) => {
 router.get('/:category_id/:difficulty_id', async (req, res) => {
   try {
     const scoreData = await Quiz.findAll({
-      include: [
-        {
-          model: Game,
-          attributes: ['game_score'],
-          order: [['game_score', 'DESC']]
-        }
-      ],
+      // include: [
+      //   {
+      //     model: Game,
+      //     attributes: ['game_score'],
+      //     order: [['game_score', 'DESC']]
+      //   }
+      // ],
       where: {
         category_id: req.params.category_id,
         difficulty_id: req.params.difficulty_id
