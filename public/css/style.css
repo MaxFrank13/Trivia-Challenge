@@ -4,3 +4,14 @@
     --dark_blue: #0C4271;
     --black: #000000;
 }
+
+
+body{
+    background: radial-gradient( var(--light_blue) 0%, var(--dark_blue) 100%);
+    color: var(--beige);
+    font-family: 'Righteous', cursive;
+}
+
+.welcome{
+    text-align: center;
+}
