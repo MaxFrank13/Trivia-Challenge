@@ -1,48 +1,41 @@
 const router = require('express').Router();
-const { Quiz, QuizQuestion, QuizAnswers, Categories, User, Difficulties, Game } = require('../../models');
+const { Quiz, QuizQuestion, QuizAnswers, Categories, User, Difficulties, Game, GameDetail } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// GET the wrong answers for a game
-
-
-// GET games from previous days
-router.get('/all', withAuth, async (req, res) => {
+// GET wrong answers for a game of the active user
+router.get('/:id', withAuth, async (req, res) => {
   try {
-    const gameData = await Game.findAll({
+    const gameData = await Game.findByPk(req.params.id, {
       include: [
         {
-          model: Quiz,
+          model: GameDetail,
           include: [
             {
               model: QuizQuestion,
-              include: [
-                {
-                  model: QuizAnswers
-                },
-              ],
             },
             {
-              model: Categories,
-            },
-            {
-              model: Difficulties,
+              model: QuizAnswers,
+              where: {
+                correct_yn: false,
+              }
             },
           ],
         },
       ],
-      where: {
-        user_id: 1,
-      },
     });
 
-    const games = gameData.map(game => game.get({ plain: true }));
+    const game = gameData.get({ plain: true });
 
-    res.status(200).json(games);
+    const wrongAnswers = game.gamedetails.map(detail => 
+      ({
+        question_id: detail.question_id,
+        question: detail.quiz_question.question_text,
+        answer_id: detail.answer_id,
+        answer: detail.quiz_answer.quiz_answer
+      })
+      );
 
-    res.render('leaderboard', {
-      games,
-      logged_in: 1,
-    });
+    res.status(200).json(wrongAnswers);
 
   } catch(err) {
     res.status(500).json(err);
@@ -50,7 +43,23 @@ router.get('/all', withAuth, async (req, res) => {
 });
 
 // POST for each answer; get ids from user input
+router.post('/answer/:id', withAuth, async (req, res) => {
+  try {
+    const newGameDetail = await GameDetail.create({
+      // ...req.body = {
+        // game_id: from FE
+        // quiz_id: from FE
+        // question_id: from FE
+      // }
+      answer_id: req.params.id,
+    });
 
+    res.status(200).json(newGameDetail);
+
+  } catch(err) {
+    res.status(500).json(err);
+  };
+});
 
 // POST a user's game result
 router.post('/', withAuth, async (req, res) => {
