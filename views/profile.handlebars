@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+    <h2>Welcome, {{user.user_name}}!</h2>
   </div>
 </div>
 
@@ -17,18 +17,19 @@
         </tr>
       </thead>
       <tbody>
-        {{#quiz-data}}
+        {{#each user.games}}
         <tr>
-          <td>{{date}}</td>
-          <td>{{game-name}}</td>
-          <td>{{score}}</td>
+          <td>{{date_created}}</td>
+          <td>{{quiz.category}}</td>
+          <td>{{quiz.difficulty}}</td>
+          <td>{{game_score}}</td>
         </tr>
-        {{/quiz-data}}
+        {{/each}}
       </tbody>
     </table>
 
     <div>
-      <button onclick="./views/login.handlebars" class="btn" type="submit">PLAY AGAIN</button>
+      <button onclick="./api/quiz" class="btn" type="submit">PLAY AGAIN</button>
     </div>
 
     <script src="./js/profile.js"></script>
