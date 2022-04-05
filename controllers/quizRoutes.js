@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Quiz, QuizQuestion, QuizAnswers, User, Game, Comment, GameDetail } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Quiz, QuizQuestion, QuizAnswers, User, Game, Comment, GameDetail } = require('../models');
+const withAuth = require('../utils/auth');
 
 // GET the quiz of the day for a given category and difficulty from our database
 router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
@@ -25,7 +25,6 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
       where: {
         category_id: req.params.category_id,
         difficulty_id: req.params.difficulty_id,
-        // type_id: req.params.type_id
       },
       order: [['date_created', 'DESC']],
     });
