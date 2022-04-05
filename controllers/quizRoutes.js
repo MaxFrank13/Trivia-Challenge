@@ -6,28 +6,28 @@ const withAuth = require('../../utils/auth');
 router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
   try {
     const quizData = await Quiz.findOne({
-      // include: [
-      //   {
-      //     model: QuizQuestion,
-      //     attributes: {
-      //       exclude: ['quiz_id'],
-      //     },
-      //     include: [
-      //       {
-      //         model: QuizAnswers,
-      //         attributes: {
-      //           exclude: ['question_id'],
-      //         },
-      //       },
-      //     ],
-      //   },
-      // ],
-      // where: {
-      //   category_id: req.params.category_id,
-      //   difficulty_id: req.params.difficulty_id,
-      //   // type_id: req.params.type_id
-      // },
-      // order: [['date_created', 'DESC']],
+      include: [
+        {
+          model: QuizQuestion,
+          attributes: {
+            exclude: ['quiz_id'],
+          },
+          include: [
+            {
+              model: QuizAnswers,
+              attributes: {
+                exclude: ['question_id'],
+              },
+            },
+          ],
+        },
+      ],
+      where: {
+        category_id: req.params.category_id,
+        difficulty_id: req.params.difficulty_id,
+        // type_id: req.params.type_id
+      },
+      order: [['date_created', 'DESC']],
     });
 
     const quiz = await quizData.get({ plain: true });
@@ -53,12 +53,12 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
 
     // ****
 
-    // res.status(200).json(quiz);
+    res.status(200).json(quiz);
 
-    res.render('quiz', {
-      ...quiz,
-      logged_in: req.session.logged_in,
-    });
+    // res.render('quiz', {
+    //   ...quiz,
+    //   logged_in: req.session.logged_in,
+    // });
 
   } catch (err) {
     res.status(400).json(err);

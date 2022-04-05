@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
 // GET profile for user if logged in
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(1, {
+    const userData = await User.findByPk(req.session.user_id, {
       attributes: ['id', 'user_name', 'photo'],
       include: [
         {
