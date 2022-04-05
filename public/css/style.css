@@ -15,3 +15,7 @@ body{
 .welcome{
     text-align: center;
 }
+
+#logout{
+    cursor: pointer;
+}
