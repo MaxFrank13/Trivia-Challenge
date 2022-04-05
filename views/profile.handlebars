@@ -12,16 +12,17 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Date</th>
-          <th scope="col">Game Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Difficulty</th>
           <th scope="col">Score</th>
         </tr>
       </thead>
       <tbody>
         {{#each user.games}}
         <tr>
-          <td>{{date_created}}</td>
-          <td>{{quiz.category}}</td>
-          <td>{{quiz.difficulty}}</td>
+          <td>{{format_date date_created}}</td>
+          <td>{{quiz.category.category_name}}</td>
+          <td>{{quiz.difficulty.difficulty_name}}</td>
           <td>{{game_score}}</td>
         </tr>
         {{/each}}
