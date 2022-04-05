@@ -53,15 +53,15 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
 
     // ****
 
-    // res.status(200).json(quiz);
+    res.status(200).json(quiz);
 
-    res.render('quiz', {
-      ...quiz,
-      logged_in: req.session.logged_in,
-    });
+    // res.render('quiz', {
+    //   ...quiz,
+    //   logged_in: req.session.logged_in,
+    // });
 
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   };
 });
 
