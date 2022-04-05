@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Quiz, GameDetail, Game, Categories, User, Difficulties, Types, QuizQuestion, QuizAnswers } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Quiz, GameDetail, Game, Categories, User, Difficulties, Types, QuizQuestion, QuizAnswers } = require('../models');
+const withAuth = require('../utils/auth');
 
 // GET all scores and game details of the active user
 router.get('/', withAuth, async (req, res) => {
