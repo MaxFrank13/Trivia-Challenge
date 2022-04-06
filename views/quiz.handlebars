@@ -9,17 +9,31 @@
     <p class="card-text">Good Luck</p>
     <button type="button" id="startBtn"class="btn btn-primary ">START</button>
   </div>
-  <div class="card-body hide" id="quizCard">
-    
-    <h5 class="card-title">Question {{quiz_questions.id}}# </h5>
+  <form class="card-body quiz hide" id="quizCard">
+
+    {{!-- <h5 class="card-title">Question {{quiz_questions.id}}# </h5>
     <p class="card-text">{{quiz_questions.question_text}}Question Text Here</p>
     <button type="button" class="btn btn-primary answerBtn" id="answerBtnA" >Answer A</button>
     <button type="button" class="btn btn-primary answerBtn" id="answerBtnB">Answer B</button>
     <button type="button" class="btn btn-primary answerBtn" id="answerBtnC">Answer C</button>
     <button type="button" class="btn btn-primary answerBtn" id="answerBtnD">Answer D</button>
-  </div>
-  
+  </div> --}}
 
-</div>
+    {{#each quiz_questions as |question|}}
+    <section class="question-container pb-2 mb-5 border-bottom border-light" data-id="{{question.id}}">
+      <h3 class="question mb-3">{{question.question_text}}</h3>
+      {{#each quiz_answers as |answer|}}
+      <input class="hide answer" type="radio" name="{{question.id}}" id="{{answer.quiz_answer}}" data-id="{{answer.id}}">
+      <label for="{{answer.quiz_answer}}" class="btn-success m-1 px-4 py-1 rounded" data-id="{{answer.id}}">{{answer.quiz_answer}}</label>
+      {{/each}}
+    </section>
+    {{/each}}
+
+    <button class="btn light">Submit your answers</button>
+    <p class="score"></p>
+
+    <button data-quiz_id="{{id}}" data-num_questions="{{quiz_questions.length}}" class="submit-score btn light hide">See and submit score</button>
+
+</form>
 
 <script src="/js/quiz.js"></script>

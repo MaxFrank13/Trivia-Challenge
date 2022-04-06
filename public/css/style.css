@@ -57,3 +57,8 @@ body{
     border-color: var(--dark_blue);
     color: var(--black);
 }
+
+input[type="radio"]:checked+label {
+    background-color: #76cf9f;
+    border-radius: 0.65rem;
+}
