@@ -21,7 +21,7 @@ Quiz.init(
       type: DataTypes.STRING,
       allowNull: true,
       unique: false,
-      defaultValue: DataTypes.NOW,
+      defaultValue: toString(DataTypes.NOW),
     },
     category_id: {
       type: DataTypes.INTEGER,

@@ -3,9 +3,9 @@ const { User, Role, Types, Difficulties } = require('../models');
 
 const userData = require('./userData.json');
 const seedCategories = require('./categoryData');
-const seedQuiz = require('./quizData');
-const seedQuizQuestions = require('./quizQuestionsData');
-const seedQuizAnswers = require('./quizAnswersData');
+const buildQuizes = require('../buildQuizes');
+// const seedQuizQuestions = require('./quizQuestionsData');
+// const seedQuizAnswers = require('./quizAnswersData');
 const seedComments = require('./commentData');
 const seedGame = require('./gameData');
 const seedGameDetail = require('./gameDetailData');
@@ -36,23 +36,26 @@ const seedDatabase = async () => {
   await seedCategories();
   console.log('\n----- CATEGORIES SEEDED -----\n');
 
-  await seedQuiz();
-  console.log('\n----- QUIZ SEEDED -----\n');
+  await buildQuizes();
+  console.log('\n----- QUIZES SEEDED -----\n');
 
-  await seedQuizQuestions();
-  console.log('\n----- QUIZ QUESTIONS SEEDED -----\n');
+  // await seedQuiz();
+  // console.log('\n----- QUIZ SEEDED -----\n');
 
-  await seedQuizAnswers();
-  console.log('\n----- QUIZ ANSWERS SEEDED -----\n');
+  // await seedQuizQuestions();
+  // console.log('\n----- QUIZ QUESTIONS SEEDED -----\n');
 
-  await seedComments();
-  console.log('\n----- COMMENTS SEEDED -----\n');
+  // await seedQuizAnswers();
+  // console.log('\n----- QUIZ ANSWERS SEEDED -----\n');
 
-  await seedGame();
-  console.log('\n----- GAMES SEEDED -----\n');
+  // await seedComments();
+  // console.log('\n----- COMMENTS SEEDED -----\n');
 
-  await seedGameDetail();
-  console.log('\n----- GAME DETAIL SEEDED -----\n');
+  // await seedGame();
+  // console.log('\n----- GAMES SEEDED -----\n');
+
+  // await seedGameDetail();
+  // console.log('\n----- GAME DETAIL SEEDED -----\n');
 
   process.exit(0);
 };
