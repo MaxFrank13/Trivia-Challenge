@@ -55,10 +55,10 @@
                   >My Profile</a>
                 </li>
                 <li class='nav-item'>
-                  <a class='nav-link' href='/api/quiz/1/2'>Take A Quiz</a>
+                  <a class='nav-link' href='/quiz/1/2'>Take A Quiz</a>
                 </li>
                 <li class='nav-item'>
-                  <a class='nav-link' href='/leaderboard'>Leader Board</a>
+                  <a class='nav-link' href='/score/all'>Leader Board</a>
                 </li>
                 <li class='nav-item'>
                   <a class='nav-link' id='logout'>Logout</a>
@@ -84,6 +84,7 @@
 
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src='/js/logout.js'></script>
     {{/if}}
   </body>
