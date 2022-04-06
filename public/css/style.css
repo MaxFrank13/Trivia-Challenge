@@ -12,10 +12,53 @@ body{
     font-family: 'Righteous', cursive;
 }
 
+.hide{
+    display: none;
+}
+
 .welcome{
     text-align: center;
+    margin: 20%;
 }
 
 #logout{
     cursor: pointer;
+}
+
+.card{
+    margin: 20%;
+    background: radial-gradient( var(--light_blue) 0%, var(--dark_blue) 100%);
+    box-shadow: inset 0px 0px 8px var(--dark_blue), 0 0 15px var(--black);
+}
+
+.answerBtn{
+    background-color: var(--light_blue);
+    color: var(--black);
+    border-color: var(--dark_blue);
+}
+
+.answerBtn:hover{
+    background-color: var(--dark_blue);
+    border-color: var(--light_blue);
+}
+
+
+#startCard{
+    text-align: center;
+}
+
+#startBtn{
+    background-color: var(--dark_blue);
+    border: var(--light_blue);
+}
+
+#startBtn:hover{
+    background-color: var(--light_blue);
+    border-color: var(--dark_blue);
+    color: var(--black);
+}
+
+input[type="radio"]:checked+label {
+    background-color: #76cf9f;
+    border-radius: 0.65rem;
 }
