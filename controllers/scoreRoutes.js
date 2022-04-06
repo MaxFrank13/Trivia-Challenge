@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Quiz, GameDetail, Game, Categories, User, Difficulties, Types, QuizQuestion, QuizAnswers } = require('../models');
+const { Quiz, GameDetail, Game, Comment, Categories, User, Difficulties, Types, QuizQuestion, QuizAnswers } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all scores and game details of the active user
@@ -30,7 +30,7 @@ router.get('/', withAuth, async (req, res) => {
             {
               model: Types,
             },
-            
+
           ],
         },
         {
@@ -67,7 +67,7 @@ router.get('/', withAuth, async (req, res) => {
       logged_in: req.session.logged_in
     });
 
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   };
 });
@@ -113,29 +113,29 @@ router.get('/:category_id/:difficulty_id', async (req, res) => {
     });
 
     const scores = scoreData.get({ plain: true });
-    
+
     const { date_created } = scores;
 
     const scoreHistory = scores.games.map(game => {
       return {
-      score: game.game_score,
-      user_name: game.user.user_name
+        score: game.game_score,
+        user_name: game.user.user_name
       }
-    }).sort((a,b) => a - b);
+    }).sort((a, b) => a - b);
 
-    // res.status(200).json({
-    //   scores,
-    //   date_created,
-    //   scoreHistory,
-    // });
-
-    res.render('leaderboard', {
-      logged_in: req.session.logged_in,
+    res.status(200).json({
+      scores,
       date_created,
       scoreHistory,
     });
 
-  } catch(err) {
+    // res.render('leaderboard', {
+    //   logged_in: req.session.logged_in,
+    //   date_created,
+    //   scoreHistory,
+    // });
+
+  } catch (err) {
     res.status(500).json(err);
   };
 });
@@ -149,11 +149,20 @@ router.get('/all', withAuth, async (req, res) => {
       },
       include: [
         {
+          model: User,
+          attributes: ['user_name'],
+        },
+        {
           model: Quiz,
           attributes: {
             exclude: ['category_id', 'difficulty_id', 'type_id'],
           },
           include: [
+
+            {
+              model: Comment,
+              attributes: ['id', 'comment_text']
+            },
             {
               model: Categories,
             },
@@ -193,7 +202,7 @@ router.get('/all', withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
 
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   };
 });

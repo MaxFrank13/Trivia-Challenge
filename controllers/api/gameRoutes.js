@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Quiz, QuizQuestion, QuizAnswers, Categories, User, Difficulties, Game, GameDetail } = require('../../models');
+const { findAll } = require('../../models/User');
 const withAuth = require('../../utils/auth');
 
 // GET wrong answers for a game of the active user
@@ -36,6 +37,21 @@ router.get('/:id', withAuth, async (req, res) => {
       );
 
     res.status(200).json(wrongAnswers);
+
+  } catch(err) {
+    res.status(500).json(err);
+  };
+});
+
+// GET boolean correct_yn for an answer by its ID
+router.get('/answer/:id', withAuth, async (req, res) => {
+  try {
+    const answerData = await QuizAnswers.findByPk(req.params.id, {
+      attributes: ['correct_yn']
+    });
+
+    const answer = answerData.get({ plain: true });
+    res.status(200).json(answer);
 
   } catch(err) {
     res.status(500).json(err);
