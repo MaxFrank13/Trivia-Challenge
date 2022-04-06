@@ -28,4 +28,3 @@ function startQuiz(event) {
 //     answerButton.classList.remove("hide");
 //     countDown.classList.remove("hide");
 // }
-

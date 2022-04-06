@@ -35,6 +35,7 @@ body{
     background-color: var(--light_blue);
     color: var(--black);
     border-color: var(--dark_blue);
+    /* margin: 5px; */
 }
 
 .answerBtn:hover{
@@ -56,4 +57,8 @@ body{
     background-color: var(--light_blue);
     border-color: var(--dark_blue);
     color: var(--black);
+}
+
+#quizCard {
+    text-align: center;
 }
