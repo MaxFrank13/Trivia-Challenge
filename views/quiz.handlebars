@@ -1,9 +1,25 @@
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="card">
+  <div class="card-header hide" id ="timer">
+    Time Left:
   </div>
+  <div class="card-body" id = "startCard">
+    <h5 class="card-title">1 Minute</h5>
+    <h5 class="card-title">10 Questions</h5>
+    <p class="card-text">Good Luck</p>
+    <button type="button" id="startBtn"class="btn btn-primary ">START</button>
+  </div>
+  <div class="card-body hide" id="quizCard">
+    
+    <h5 class="card-title">Question {{quiz_questions.id}}# </h5>
+    <p class="card-text">{{quiz_questions.question_text}}Question Text Here</p>
+    <button type="button" class="btn btn-primary answerBtn" id="answerBtnA" >Answer A</button>
+    <button type="button" class="btn btn-primary answerBtn" id="answerBtnB">Answer B</button>
+    <button type="button" class="btn btn-primary answerBtn" id="answerBtnC">Answer C</button>
+    <button type="button" class="btn btn-primary answerBtn" id="answerBtnD">Answer D</button>
+  </div>
+  
+
 </div>
+
+<script src="/js/quiz.js"></script>

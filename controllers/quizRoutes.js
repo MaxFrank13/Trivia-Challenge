@@ -25,6 +25,7 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
       where: {
         category_id: req.params.category_id,
         difficulty_id: req.params.difficulty_id,
+
       },
       order: [['date_created', 'DESC']],
     });
