@@ -20,10 +20,10 @@
 
     {{#each quiz_questions as |question|}}
     <section class="question-container pb-2 mb-5 border-bottom border-light" data-id="{{question.id}}">
-      <h3 class="question mb-3">{{question.question_text}}</h3>
+      <h3 class="question mb-3">{{{question.question_text}}}</h3>
       {{#each quiz_answers as |answer|}}
       <input class="hide answer" type="radio" name="{{question.id}}" id="{{answer.quiz_answer}}" data-id="{{answer.id}}">
-      <label for="{{answer.quiz_answer}}" class="btn-success m-1 px-4 py-1 rounded" data-id="{{answer.id}}">{{answer.quiz_answer}}</label>
+      <label for="{{answer.quiz_answer}}" class="btn-success m-1 px-4 py-1 rounded" data-id="{{answer.id}}">{{{answer.quiz_answer}}}</label>
       {{/each}}
     </section>
     {{/each}}
