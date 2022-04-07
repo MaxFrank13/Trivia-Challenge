@@ -30,18 +30,22 @@
     </table>
 
     <form class="generate-quiz">
-      <select name="category" id="category">
+      <label for="category">Choose category:</label>
+      <div class="form-group">
+        <select name="category" id="category" class="form-select">
 
-      </select>
-      <select name="difficulty" id="difficulty">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="difficulty">Choose difficulty:</label>
+        <select name="difficulty" id="difficulty" class="form-select">
 
-      </select>
-      <button class="btn">submit</button>
+        </select>
+      </div>
+      {{!-- <select name="type" id="type" class="form-control">
+
+      </select> --}}
+      <button type="submit" class="p-3 mt-1 btn btn-primary">Find me a quiz!</button>
     </form>
 
-
-    <div>
-      <button onclick="./api/quiz" class="btn" type="submit">PLAY AGAIN</button>
-    </div>
-
-    <script src="./js/profile.js"></script>
+    <script src="/js/profile.js"></script>

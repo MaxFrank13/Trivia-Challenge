@@ -1,6 +1,16 @@
 const generateQuizForm = document.querySelector('.generate-quiz');
 const categorySelect = document.querySelector('#category');
 const difficultySelect = document.querySelector('#difficulty');
+// const typeSelect = document.querySelector('#type');
+const quizForm = document.querySelector('.generate-quiz');
+
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  console.log(`${categorySelect.value}/${difficultySelect.value}`);
+  document.location.replace(`quiz/${categorySelect.value}/${difficultySelect.value}`);
+};
+
+quizForm.addEventListener('submit', handleFormSubmit);
 
 const createCategories = (categories) => {
   categories.forEach(category => {
@@ -20,6 +30,15 @@ const createDifficulties = (difficulties) => {
   });
 };
 
+// const createTypes = (types) => {
+//   types.forEach(type => {
+//     const newOption = document.createElement('option');
+//     newOption.value = type.id;
+//     newOption.textContent = type.display_name;
+//     typeSelect.appendChild(newOption);
+//   });
+// };
+
 const getFormData = async () => {
   const response = await fetch('/api/form/all', {
     method: 'GET',
@@ -29,10 +48,11 @@ const getFormData = async () => {
   })
 
   const data = await response.json();
-
+  console.log(data);
   createCategories(data.categories);
   createDifficulties(data.difficulties);
-}; 
+  // createTypes(data.types);
+};
 
 getFormData();
 

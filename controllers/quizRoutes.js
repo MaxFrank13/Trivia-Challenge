@@ -37,6 +37,34 @@ router.get('/', withAuth, async (req, res) => {
     res.status(500).json(err);
   };
 });
+
+router.get('/all', async (req, res) => {
+  try {
+    const quizData = await Quiz.findAll({
+      include: [
+      {
+        model: QuizQuestion,
+        attributes: {
+          exclude: ['quiz_id'],
+        },
+        include: [
+          {
+            model: QuizAnswers,
+            attributes: {
+              exclude: ['question_id'],
+            },
+          },
+        ],
+      },
+    ],
+  });
+    const quizzes = quizData.map(quiz => quiz.get({ plain: true }));
+
+    res.status(200).json(quizzes);
+  } catch (err) {
+    res.status(500).json(err);
+  };
+});
 // GET the quiz of the day for a given category and difficulty from our database
 router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
   try {
@@ -60,7 +88,7 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
       where: {
         category_id: req.params.category_id,
         difficulty_id: req.params.difficulty_id,
-
+        type_id: 1,
       },
       order: [['date_created', 'DESC']],
     });
@@ -89,6 +117,15 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
     // ****
 
     // res.status(200).json(quiz);
+
+    quiz.quiz_questions.map(question => {
+      const answers = question.quiz_answers;
+      const randomIndex = Math.floor(Math.random() * answers.length);
+
+      answers.splice(randomIndex, 0, answers[0]);
+      answers.shift();
+      return question;
+    });
 
     res.render('quiz', {
       ...quiz,
