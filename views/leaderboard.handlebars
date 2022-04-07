@@ -1,4 +1,29 @@
-<div>leaderboard here</div>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Leader Board</h3>
+
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">User</th>
+          <th scope="col">Category</th>
+          <th scope="col">Difficulty</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each games as |game| }}
+        <tr>
+          <td>{{format_date game.date_created}}</td>
+          <td>{{game.user.user_name}}</td>
+          <td>{{game.quiz.category.category_name}}</td>
+          <td>{{game.quiz.difficulty.difficulty_name}}</td>
+          <td>{{game.game_score}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
 
 <div>
 <input {{user_comment}} type="text" id="comment-box" placeholder="Enter Comment">
