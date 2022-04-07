@@ -1,3 +1,45 @@
+const generateQuizForm = document.querySelector('.generate-quiz');
+const categorySelect = document.querySelector('#category');
+const difficultySelect = document.querySelector('#difficulty');
+
+const createCategories = (categories) => {
+  categories.forEach(category => {
+    const newOption = document.createElement('option');
+    newOption.value = category.id;
+    newOption.textContent = category.category_name;
+    categorySelect.appendChild(newOption);
+  });
+};
+
+const createDifficulties = (difficulties) => {
+  difficulties.forEach(difficulty => {
+    const newOption = document.createElement('option');
+    newOption.value = difficulty.id;
+    newOption.textContent = difficulty.difficulty_name;
+    difficultySelect.appendChild(newOption);
+  });
+};
+
+const getFormData = async () => {
+  const response = await fetch('/api/form/all', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const data = await response.json();
+
+  createCategories(data.categories);
+  createDifficulties(data.difficulties);
+}; 
+
+getFormData();
+
+
+
+
+
 // const newFormHandler = async (event) => {
 //   event.preventDefault();
 
