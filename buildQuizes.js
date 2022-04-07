@@ -74,34 +74,53 @@ saveAnswer = async (questionId, answer_text, correct) => {
 fetchAndSaveQuizes = async (category, difficulty, type) => {
 
     try {
-
         const response = await axios.get(`${quizAPIURL}&category=${category.api_id}&type=${type.name}&difficulty=${difficulty.name}`);
+
+        const results = response.data.results;
+
         if (response.data.response_code == 0) {
+            const newQuiz = await Quiz.create({
+                category_id: category.id,
+                type_id: type.id,
+                difficulty_id: difficulty.id,
+            });
+            const promises = results.map(async (result, i) => {
 
-            for (i = 0; i < response.data.results.length; i++) {
-                console.log(response.data.results[i].question.trim().length);
-                console.log(response.data.results[i].correct_answer.trim().length);
-                console.log(response.data.results[i].incorrect_answers.length);
+                const newQuestionId = await saveQuestion(newQuiz.id, result.question);
 
-                if (response.data.results[i].question.trim().length && response.data.results[i].correct_answer.trim().length && response.data.results[i].incorrect_answers.length) {
-                    // save quiz
-                    const newQuiz = await Quiz.create({
-                        category_id: category.id,
-                        type_id: type.id,
-                        difficulty_id: difficulty.id,
-                    });
+                // save correct answer
+                await saveAnswer(newQuestionId, result.correct_answer, true);
 
-                    const newQuestionId = await saveQuestion(newQuiz.id, response.data.results[i].question);
-
-                    // save correct answer
-                    saveAnswer(newQuestionId, response.data.results[i].correct_answer, true);
-
-                    // save incorrect answers
-                    for (x = 0; x < response.data.results[i].incorrect_answers.length; x++) {
-                        saveAnswer(newQuestionId, response.data.results[i].incorrect_answers[x], false);
-                    }
+                // save incorrect answers
+                for (x = 0; x < result.incorrect_answers.length; x++) {
+                    saveAnswer(newQuestionId, result.incorrect_answers[x], false);
                 }
-            }
+            });
+            await Promise.all(promises);
+            // for (i = 0; i < response.data.results.length; i++) {
+                // console.log(response.data.results[i].question.trim().length);
+                // console.log(response.data.results[i].correct_answer.trim().length);
+                // console.log(response.data.results[i].incorrect_answers.length);
+
+                // if (response.data.results[i].question.trim().length && response.data.results[i].correct_answer.trim().length && response.data.results[i].incorrect_answers.length) {
+                    // save quiz
+                    // const newQuiz = await Quiz.create({
+                    //     category_id: category.id,
+                    //     type_id: type.id,
+                    //     difficulty_id: difficulty.id,
+                    // });
+
+                    // const newQuestionId = await saveQuestion(newQuiz.id, response.data.results[i].question);
+
+                    // // save correct answer
+                    // saveAnswer(newQuestionId, response.data.results[i].correct_answer, true);
+
+                    // // save incorrect answers
+                    // for (x = 0; x < response.data.results[i].incorrect_answers.length; x++) {
+                    //     saveAnswer(newQuestionId, response.data.results[i].incorrect_answers[x], false);
+                    // }
+                // }
+            // }
         }
     } catch (error) {
         console.error(error);
@@ -123,11 +142,11 @@ const buildQuizes = async () => {
         for (a = 0; a < cats.length; a++) {
             // cats.forEach(cat => {
 
-            for (b = 0; b < types.length; b++) {
+            for (b = 0; b < diffs.length; b++) {
                 // diffs.forEach(diff => {
-                for (c = 0; c < diffs.length; c++) {
+                for (c = 0; c < types.length; c++) {
                     // types.forEach(type => {
-                    fetchAndSaveQuizes(cats[a], diffs[c], types[b]);
+                    fetchAndSaveQuizes(cats[a], diffs[b], types[c]);
                 }
             }
         }

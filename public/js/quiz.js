@@ -38,7 +38,8 @@ const score = document.querySelector('.score');
 const submitScore = document.querySelector('.submit-score');
 
 let result = 0;
-let currentQuestion =1;
+const startingId = parseInt(questions[0].dataset.id);
+let currentQuestion = startingId;
 
 const quizSubmitHandle = async () => {
 
@@ -106,7 +107,8 @@ const nextQuestionHandle = () => {
         else question.classList.remove('hide');
     })
     currentQuestion++;
-    if (currentQuestion === 12)
+
+    if (currentQuestion === startingId + 11)
     quizEndHandle();
 };
 
