@@ -78,33 +78,33 @@ fetchAndSaveQuizes = async (category, difficulty, type) => {
         const response = await axios.get(`${quizAPIURL}&category=${category.api_id}&type=${type.name}&difficulty=${difficulty.name}`);
         if (response.data.response_code == 0) {
 
-            for (i = 0; i < response.data.results.length - 1; i++) {
-                if (response.data.results[i].question.trim() && response.data.results[i].question.trim().length) {
-                    console.log(response.data.results[i] + "\n")
+            for (i = 0; i < response.data.results.length; i++) {
+                console.log(response.data.results[i].question.trim().length);
+                console.log(response.data.results[i].correct_answer.trim().length);
+                console.log(response.data.results[i].incorrect_answers.length);
+
+                if (response.data.results[i].question.trim().length && response.data.results[i].correct_answer.trim().length && response.data.results[i].incorrect_answers.length) {
                     // save quiz
-                //     const newQuiz = await Quiz.create({
-                //         category_id: category.id,
-                //         type_id: type.id,
-                //         difficulty_id: difficulty.id,
-                //     });
+                    const newQuiz = await Quiz.create({
+                        category_id: category.id,
+                        type_id: type.id,
+                        difficulty_id: difficulty.id,
+                    });
 
-                //     const newQuestionId = await saveQuestion(newQuiz.id, response.data.results[i].question);
+                    const newQuestionId = await saveQuestion(newQuiz.id, response.data.results[i].question);
 
-                //     // save correct answer
-                //     // console.log(response.data.results[i]);
-                //     saveAnswer(newQuestionId, response.data.results[i].correct_answer, true);
+                    // save correct answer
+                    saveAnswer(newQuestionId, response.data.results[i].correct_answer, true);
 
-                //     // save incorrect answers
-                //     for (x = 0; x < response.data.results[i].incorrect_answers.length - 1; x++) {
-                //         saveAnswer(newQuestionId, response.data.results[i].incorrect_answers[x], false);
-                //     }
-                // }
+                    // save incorrect answers
+                    for (x = 0; x < response.data.results[i].incorrect_answers.length; x++) {
+                        saveAnswer(newQuestionId, response.data.results[i].incorrect_answers[x], false);
+                    }
+                }
             }
         }
-    }
     } catch (error) {
         console.error(error);
-        console.log(response.data.results[i])
     }
 };
 
@@ -120,19 +120,16 @@ const buildQuizes = async () => {
         const diffs = await getDifficulties();
 
         // call api for each permutation
-        for (a = 0; a < cats.length - 1; a++) {
+        for (a = 0; a < cats.length; a++) {
             // cats.forEach(cat => {
 
-            for (b = 0; b < types.length - 1; b++) {
+            for (b = 0; b < types.length; b++) {
                 // diffs.forEach(diff => {
-                for (c = 0; c < diffs.length - 1; c++) {
+                for (c = 0; c < diffs.length; c++) {
                     // types.forEach(type => {
                     fetchAndSaveQuizes(cats[a], diffs[c], types[b]);
-                    // return;
                 }
-                // return;
             }
-            // return;
         }
 
     } catch (error) {
