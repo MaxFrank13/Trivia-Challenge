@@ -2,6 +2,41 @@ const router = require('express').Router();
 const { Quiz, QuizQuestion, QuizAnswers, User, Game, Comment, GameDetail } = require('../models');
 const withAuth = require('../utils/auth');
 
+//GET the latest quiz of the day for this user
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const quizData = await Quiz.findOne({
+      include: [
+        {
+          model: QuizQuestion,
+          attributes: {
+            exclude: ['quiz_id'],
+          },
+          include: [
+            {
+              model: QuizAnswers,
+              attributes: {
+                exclude: ['question_id'],
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    const quiz = quizData.get({ plain: true });
+
+    console.log(quiz);
+
+    res.render('quiz', {
+      ...quiz,
+      logged_in: req.session.logged_in,
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  };
+});
 // GET the quiz of the day for a given category and difficulty from our database
 router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
   try {
@@ -61,7 +96,7 @@ router.get('/:category_id/:difficulty_id', withAuth, async (req, res) => {
     });
 
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   };
 });
 
