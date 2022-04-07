@@ -8,7 +8,7 @@
     <p class="card-text">Good Luck</p>
     <button type="button" id="startBtn"class="btn btn-primary ">START</button>
   </div>
-  <form class="card-body quiz hide" id="quizCard">
+  <form class="card-body quiz hide" data-id="{{id}}" id="quizCard">
 
     {{!-- <h5 class="card-title">Question {{quiz_questions.id}}# </h5>
     <p class="card-text">{{quiz_questions.question_text}}Question Text Here</p>
@@ -19,19 +19,21 @@
   </div> --}}
 
     {{#each quiz_questions as |question|}}
-    <section class="question-container pb-2 mb-5 border-bottom border-light" data-id="{{question.id}}">
+    <section class="question-container" data-id="{{question.id}}">
       <h3 class="question mb-3">{{{question.question_text}}}</h3>
       {{#each quiz_answers as |answer|}}
-      <input class="hide answer" type="radio" name="{{question.id}}" id="{{answer.quiz_answer}}" data-id="{{answer.id}}">
-      <label for="{{answer.quiz_answer}}" class="btn-success m-1 px-4 py-1 rounded" data-id="{{answer.id}}">{{{answer.quiz_answer}}}</label>
+      <div class="btn_grid">
+      <input class=" answer hide" type="radio" name="{{question.id}}" id="{{answer.quiz_answer}}" data-id="{{answer.id}}">
+      <label for="{{answer.quiz_answer}}" class="answerBtn btn-success m-1 px-4 py-1 rounded" data-id="{{answer.id}}">{{{answer.quiz_answer}}}</label>
+      </div>
       {{/each}}
     </section>
     {{/each}}
 
-    <button class="btn light">Submit your answers</button>
-    <p class="score"></p>
+    {{!-- <button class="btn light">Submit your answers</button> --}}
+    {{!-- <p class="score"></p> --}}
 
-    <button data-quiz_id="{{id}}" data-num_questions="{{quiz_questions.length}}" class="submit-score btn light hide">See and submit score</button>
+    <button data-quiz_id="{{id}}" data-num_questions="{{quiz_questions.length}}" class="submit-score btn light hide">Loading Score...</button>
 
 </form>
 
