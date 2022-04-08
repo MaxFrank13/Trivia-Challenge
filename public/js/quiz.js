@@ -1,11 +1,10 @@
 const startButton =  document.getElementById('startBtn');
 const quiz_card = document.getElementById('quizCard');
 const start_card = document.getElementById('startCard');
-// const answerButtonA =  document.getElementById('answerBtnA');
-// const answerButtonB =  document.getElementById('answerBtnB');
-// const answerButtonC =  document.getElementById('answerBtnC');
-// const answerButtonD =  document.getElementById('answerBtnD');
-// const countDown =  document.getElementById('timer');
+const timerBox =  document.getElementById('timer_box');
+const countDown = document.getElementById('count_down');
+let timer;
+let timerCount = 60;
 
 startButton.addEventListener('click', startQuiz)
 
@@ -17,12 +16,35 @@ function startQuiz(event) {
     // countDown.classList.remove("hide");
     quiz_card.classList.remove("hide");
     start_card.classList.add("hide");
+    startTimer();
     nextQuestionHandle();
     // answerButtonB.classList.remove("hide");
     // answerButtonC.classList.remove("hide");
     // answerButtonD.classList.remove("hide");
 }
 
+const startTimer = () => {
+    timerBox.classList.remove("hide");
+    timer = setInterval(function() {
+        timerCount--;
+        countDown.textContent = timerCount;
+        // Tests if time has run out
+        if (timerCount <= 10){
+            countDown.classList.add('warn');
+        }
+        if (timerCount <= 0) {
+          // Clears interval
+          clearInterval(timer);
+          timesUp();
+        }
+      }, 1000);
+};
+
+const timesUp = () => {
+    countDown.classList.add('hide');
+    quiz_card.classList.add('hide');
+    quizEndHandle();
+}
 // const startQuiz = async (event) => {
 //     event.preventDefault();
 //     console.log("quiz started!");
