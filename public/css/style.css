@@ -18,7 +18,6 @@ body{
 
 .welcome{
     text-align: center;
-    margin: 20%;
 }
 
 #logout{
@@ -90,4 +89,25 @@ input[type="radio"]:checked+label {
 
 .generate-quiz button {
     background: #0C4271;
+}
+
+.warn {
+    color: rgb(216, 38, 38);
+}
+.times_up{
+    text-align: center;
+}
+
+.table{
+    text-align: center;
+    color: var(--beige);
+}
+th {
+    color: var(--black);
+}
+
+.board{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

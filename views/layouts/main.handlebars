@@ -29,11 +29,11 @@
         <a href="/login">login</a>
         {{/if}}
       </nav> --}}
-
-        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+        
+        <nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
           <div class='container-fluid'>
             <a class='navbar-brand' href='/'>Trivia Challenge</a>
-            <button
+            {{!-- <button
               class='navbar-toggler'
               type='button'
               data-bs-toggle='collapse'
@@ -44,7 +44,7 @@
             >
               <span class='navbar-toggler-icon'></span>
             </button>
-            <div class='collapse navbar-collapse' id='navbarNav'>
+            <div class='collapse navbar-collapse' id='navbarNav'> --}}
               <ul class='navbar-nav'>
                 {{#if logged_in}}
                 <li class='nav-item'>
@@ -55,7 +55,7 @@
                   >My Profile</a>
                 </li>
                 <li class='nav-item'>
-                  <a class='nav-link' href='/quiz/1/2'>Take A Quiz</a>
+                  <a class='nav-link' href='/quiz'>Daily Quiz</a>
                 </li>
                 <li class='nav-item'>
                   <a class='nav-link' href='/score/all'>Leader Board</a>
