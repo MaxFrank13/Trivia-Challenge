@@ -16,6 +16,10 @@ body{
     display: none;
 }
 
+.banner{
+    text-align: center;
+    margin: 20%;
+}
 .welcome{
     text-align: center;
 }
