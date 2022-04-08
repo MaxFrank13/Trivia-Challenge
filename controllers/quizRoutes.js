@@ -22,11 +22,21 @@ router.get('/', withAuth, async (req, res) => {
           ],
         },
       ],
+      where: {
+        type_id: 1,
+      }
     });
 
     const quiz = quizData.get({ plain: true });
+    
+    quiz.quiz_questions.map(question => {
+      const answers = question.quiz_answers;
+      const randomIndex = Math.floor(Math.random() * answers.length);
 
-    console.log(quiz);
+      answers.splice(randomIndex, 0, answers[0]);
+      answers.shift();
+      return question;
+    });
 
     res.render('quiz', {
       ...quiz,
