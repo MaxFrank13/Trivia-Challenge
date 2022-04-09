@@ -19,7 +19,8 @@ const seedData = [
 },
 {
     "api_id": 13,
-    "category_name": "Entertainment: Musicals & Theatres"
+    "category_name": "Entertainment: Musicals & Theatres",
+    "active": false
 },
 {
     "api_id": 14,
@@ -43,7 +44,8 @@ const seedData = [
 },
 {
     "api_id": 19,
-    "category_name": "Science: Mathematics"
+    "category_name": "Science: Mathematics",
+    "active": false
 },
 {
     "api_id": 20,
@@ -67,7 +69,8 @@ const seedData = [
 },
 {
     "api_id": 25,
-    "category_name": "Art"
+    "category_name": "Art",
+    "active": false
 },
 {
     "api_id": 26,
@@ -87,7 +90,8 @@ const seedData = [
 },
 {
     "api_id": 30,
-    "category_name": "Science: Gadgets"
+    "category_name": "Science: Gadgets",
+    "active": false
 },
 {
     "api_id": 31,
