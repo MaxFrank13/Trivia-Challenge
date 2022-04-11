@@ -6,7 +6,7 @@ This is an trivia game application that can be used to test your Jeopardy skills
 
 [Take a quiz!](https://boiling-reaches-95982.herokuapp.com/)
 
-![Leaderboard screenshot](https://github.com/dpmurphy11/trivia-challenge/blob/main/assets/images/trivia-challenge-photo.png)
+![Leaderboard screenshot](https://github.com/dpmurphy11/trivia-challenge/blob/main/assets/images/trivia-challenge-photo.PNG)
 
 ## Installation
 
